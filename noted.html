@@ -1,14 +1,28 @@
 <head>
-  <title>noted</title>
+  <title>Noted</title>
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
+	{{>loginButtons}}
+	<hr />
+	{{>addNoteForm}}
 
-  {{> hello}}
+	{{>notes}}
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+<template name="notes">
+	{{#each note}}
+		<div class="note">
+			<h3>{{title}}</h3>
+			<p>{{content}}</p>
+		</div>
+	{{/each}}
+</template>
+
+<template name="addNoteForm">
+  <form>
+  	<input type="text" name="noteTitle" placeholder="Add Title">
+  	<input type="text" name="noteContent" placeholder="Add Content">
+  	<input type="Submit" value="Add Note">
+  </form>
 </template>
