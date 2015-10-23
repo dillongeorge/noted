@@ -6,16 +6,17 @@
 	{{>loginButtons}}
 	<hr />
 	{{>addNoteForm}}
-
 	{{>notes}}
 </body>
 
 <template name="notes">
+	
+	<div class="grid">
+		<!-- Notes will be shown here -->
+	</div>
+
 	{{#each note}}
-		<div class="note">
-			<h3>{{title}}</h3>
-			<p>{{content}}</p>
-		</div>
+		{{gridifyNote title}}
 	{{/each}}
 </template>
 

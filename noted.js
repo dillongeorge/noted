@@ -1,9 +1,30 @@
 Notes = new Mongo.Collection("notes");
 
 if (Meteor.isClient) {
+  
+  Meteor.startup(function(){
+    var $grid = $('.grid').masonry({
+      itemSelector: '.grid-item',
+      columnWidth: 200
+    });
+
+    $grid.on( 'click', '.grid-item', function() {
+      // change size of item via class
+      $( this ).toggleClass('grid-item--gigante');
+      // trigger layout
+      $grid.masonry();
+    });
+  });
+
   Template.notes.helpers({
     'note': function(){
       return Notes.find({}, {sort: {createdOn: -1}});
+    },
+    'gridifyNote': function(noteTitle, noteContent){
+      console.log(noteTitle);
+      var $item = $("<div class='grid-item'><h3>"+noteTitle+
+        "</h3><p>test</p></div>");
+      $('.grid').prepend($item).masonry('prepended', $item);
     }
   })
 
@@ -30,6 +51,6 @@ if (Meteor.isClient) {
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
-    // code to run on server at startup
+    
   });
 }
