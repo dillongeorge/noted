@@ -9,7 +9,7 @@ body { font-family: sans-serif; }
 /* ---- grid ---- */
 
 .grid {
-  background: #000;
+  background: #FFF;
   max-width: 1200px;
 }
 
@@ -26,10 +26,11 @@ body { font-family: sans-serif; }
   width: 160px;
   height: 120px;
   float: left;
-  background: #222;
+  background: #EEE;
   border: 2px solid #333;
   border-color: hsla(0, 0%, 0%, 0.5);
   border-radius: 5px;
+  margin-bottom: 10px;
 }
 
 .grid-item--width2 { width: 320px; }
@@ -44,4 +45,10 @@ body { font-family: sans-serif; }
 .grid-item--gigante {
   width: 320px;
   height: 360px;
+}
+
+.grid-item:hover {
+  background: #A2C;
+  border-color: white;
+  cursor: pointer;
 }
