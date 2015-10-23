@@ -21,9 +21,8 @@ if (Meteor.isClient) {
       return Notes.find({}, {sort: {createdOn: -1}});
     },
     'gridifyNote': function(noteTitle, noteContent){
-      console.log(noteTitle);
       var $item = $("<div class='grid-item'><h3>"+noteTitle+
-        "</h3><p>test</p></div>");
+        "</h3><p>" + noteContent + "</p></div>");
       $('.grid').prepend($item).masonry('prepended', $item);
     }
   })

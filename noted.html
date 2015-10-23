@@ -6,6 +6,7 @@
 	{{>loginButtons}}
 	<hr />
 	{{>addNoteForm}}
+
 	{{>notes}}
 </body>
 
@@ -16,7 +17,7 @@
 	</div>
 
 	{{#each note}}
-		{{gridifyNote title}}
+		{{gridifyNote title content}}
 	{{/each}}
 </template>
 
