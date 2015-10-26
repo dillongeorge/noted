@@ -17,7 +17,7 @@
 	</div>
 
 	{{#each note}}
-		{{gridifyNote title content}}
+		{{gridifyNote title content image_id}}
 	{{/each}}
 </template>
 
@@ -25,6 +25,7 @@
   <form>
   	<input type="text" name="noteTitle" placeholder="Add Title">
   	<input type="text" name="noteContent" placeholder="Add Content">
+  	<input type="file" name="noteImage" placeholder="Image">
   	<input type="Submit" value="Add Note">
   </form>
 </template>
