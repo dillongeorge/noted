@@ -23,12 +23,21 @@ if (Meteor.isClient) {
     'note': function(){
       return Notes.find({}, {sort: {createdOn: -1}});
     },
-    'gridifyNote': function(noteTitle, noteContent, noteImage){
+    'gridifyNote': function(noteTitle, noteContent, noteImageId){
       var $note = $("<div>", {class: "grid-item"});
 
       $note.append($("<h3>", {class: "note-title"}).text(noteTitle));
       $note.append($("<p>", {class: "note-content"}).text(noteContent));
 
+      if(noteImageId){
+        var imageUrl = Images
+          .find(noteImageId)
+          .fetch()[0]
+          .url();
+
+        $note.append($("<img>", {class: "note-image", src: imageUrl}));
+        console.log(imageUrl);
+      } 
 
       $('.grid').prepend($note).masonry('prepended', $note);
     }
@@ -40,20 +49,17 @@ if (Meteor.isClient) {
 
       var noteTitle = event.target.noteTitle.value;
       var noteContent = event.target.noteContent.value;
-      var image = event.target.noteImage.files;
-      var imageId = null;
+      var file = event.target.noteImage.files[0] || null;
       var user = Meteor.userId();
 
-      Images.insert(image[0], function(err, fileObj){
-        if(err) alert("Something went wrong!");
-        else imageId = fileObj._id;
-      });
+      if(file)
+        var imageId = Images.insert(file)._id;
 
       Notes.insert({
         title: noteTitle,
         content: noteContent,
         createdBy: user,
-        image_id: fileObj._id,
+        image_id: imageId || null,
         createdOn: new Date()
       });
 

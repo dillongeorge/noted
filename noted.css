@@ -31,6 +31,11 @@ body { font-family: sans-serif; }
   margin-bottom: 10px;
 }
 
+.note-image{
+	width: 25%;
+	height: 25%;
+}
+
 .grid-item--width2 { width: 320px; }
 .grid-item--width3 { width: 480px; }
 .grid-item--width4 { width: 640px; }
