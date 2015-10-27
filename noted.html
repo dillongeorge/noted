@@ -13,12 +13,19 @@
 <template name="notes">
 	
 	<div class="grid">
-		<!-- Notes will be shown here -->
+		{{#each note}}
+			<div class="grid-item">
+				<h3>{{title}}</h3>
+				<p>{{content}}</p>
+				{{#if imageId}}
+					{{#with noteImage}}
+						<img class="note-image" src="{{this.url}}" />
+					{{/with}}
+				{{/if}}
+			</div>
+			{{gridify}}
+		{{/each}}
 	</div>
-
-	{{#each note}}
-		{{gridifyNote title content image_id}}
-	{{/each}}
 </template>
 
 <template name="addNoteForm">

@@ -1,6 +1,6 @@
 Notes = new Mongo.Collection("notes");
 Images = new FS.Collection("images", {
-  stores: [new FS.Store.FileSystem("images", {path: "~/uploads"})]
+  stores: [new FS.Store.GridFS("images")]
 });
 
 if (Meteor.isClient) {
@@ -24,22 +24,25 @@ if (Meteor.isClient) {
       return Notes.find({}, {sort: {createdOn: -1}});
     },
     'gridifyNote': function(noteTitle, noteContent, noteImageId){
-      var $note = $("<div>", {class: "grid-item"});
-
-      $note.append($("<h3>", {class: "note-title"}).text(noteTitle));
-      $note.append($("<p>", {class: "note-content"}).text(noteContent));
-
       if(noteImageId){
-        var imageUrl = Images
-          .find(noteImageId)
-          .fetch()[0]
-          .url();
+        Meteor.call("fetchImageUrl", noteImageId, function(error, result){
+          console.log(result.url);
+          var url = result.url;
+          console.log(url);
+          var $note = $("<div>", {class: "grid-item"});
+          $note.append($("<img>", {class: "note-image", src: url}));
 
-        $note.append($("<img>", {class: "note-image", src: imageUrl}));
-        console.log(imageUrl);
-      } 
-
-      $('.grid').prepend($note).masonry('prepended', $note);
+        $note.append($("<h3>", {class: "note-title"}).text(noteTitle));
+        $note.append($("<p>", {class: "note-content"}).text(noteContent));
+          $('.grid').prepend($note).masonry('prepended', $note);
+        });
+      }
+    },
+    'noteImage': function(){
+      return Images.findOne(this.imageId._id);
+    },
+    'gridify': function(){
+      $('.grid').masonry();
     }
   })
 
@@ -50,18 +53,9 @@ if (Meteor.isClient) {
       var noteTitle = event.target.noteTitle.value;
       var noteContent = event.target.noteContent.value;
       var file = event.target.noteImage.files[0] || null;
-      var user = Meteor.userId();
 
-      if(file)
-        var imageId = Images.insert(file)._id;
-
-      Notes.insert({
-        title: noteTitle,
-        content: noteContent,
-        createdBy: user,
-        image_id: imageId || null,
-        createdOn: new Date()
-      });
+      var image = file ? Images.insert(file) : null;
+      Meteor.call('insertNote', noteTitle, noteContent, image);
 
       event.target.noteTitle.value = "";
       event.target.noteContent.value = "";
@@ -74,12 +68,31 @@ if (Meteor.isServer) {
     
   });
 
+  Meteor.methods({
+    'updateNote': function(id, photoId){
+      Notes.update(id, {$set: {imageId: photoId}});
+    },
+    'insertNote': function(noteTitle, noteContent, pid){
+      Notes.insert({
+        title: noteTitle,
+        content: noteContent,
+        createdBy: Meteor.userId(),
+        imageId: pid,
+        createdOn: new Date()
+      });
+    },
+    'fetchImageUrl': function(imageId){
+      return {url: Images.findOne(imageId).url()};
+    }
+  });
+
   Images.allow({
     insert: function(){
       return true;
     },
-    download: function(){
+    update: function(){
       return true;
-    }
+    },
+    download: function(){ return true; }
   })
 }
