@@ -20,7 +20,11 @@ autopublish             # Publish all data to the clients (for prototyping)
 insecure                # Allow all DB writes from clients (for prototyping)
 accounts-password
 accounts-ui
-sjors:meteor-masonry
 cfs:standard-packages
 cfs:ejson-file
 cfs:gridfs
+twbs:bootstrap
+mrt:jquery-imagesloaded
+robodo:masonrify
+isotope:isotope
+dburles:packery

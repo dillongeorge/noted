@@ -4,63 +4,59 @@ Images = new FS.Collection("images", {
 });
 
 if (Meteor.isClient) {
-  
-  Meteor.startup(function(){
-    var $grid = $('.grid').masonry({
-      itemSelector: '.grid-item',
-      columnWidth: 200
-    });
-
-    $grid.on( 'click', '.grid-item', function() {
-      // change size of item via class
-      $( this ).toggleClass('grid-item--gigante');
-      // trigger layout
-      $grid.masonry();
-    });
-  });
 
   Template.notes.helpers({
     'note': function(){
       return Notes.find({}, {sort: {createdOn: -1}});
     },
-    'gridifyNote': function(noteTitle, noteContent, noteImageId){
-      if(noteImageId){
-        Meteor.call("fetchImageUrl", noteImageId, function(error, result){
-          console.log(result.url);
-          var url = result.url;
-          console.log(url);
-          var $note = $("<div>", {class: "grid-item"});
-          $note.append($("<img>", {class: "note-image", src: url}));
+    'gridifyNote': function(note, image){
+        var $note = $("<div>", {class: "grid-item"});
 
-        $note.append($("<h3>", {class: "note-title"}).text(noteTitle));
-        $note.append($("<p>", {class: "note-content"}).text(noteContent));
-          $('.grid').prepend($note).masonry('prepended', $note);
-        });
-      }
-    },
+        $note.append($("<h3>", {class: "note-title"}).text(note.title));
+        $note.append($("<p>", {class: "note-content"}).text(note.content));
+
+        if(image){
+          var imageUrl = Images.findOne(image._id).url();
+          $note.append($("<img>", {class: "note-image", src: imageUrl}));
+        }
+
+        $('.grid').prepend($note).masonry('prepended', $note);
+    }
+  });
+
+  Template.notes.onRendered(function(){
+  });
+
+  Template.dom_note.helpers({
     'noteImage': function(){
       return Images.findOne(this.imageId._id);
     },
-    'gridify': function(){
-      $('.grid').masonry();
+    'size': function(content){
+      if(content.length > 5) return "grid-item--gigante";
     }
-  })
+  });
+
+  Template.dom_note.onRendered(function(){
+    $('#notes-container').isotope({
+      itemSelector: '.grid-item',
+      gutter: 20
+    });
+  });
 
   Template.addNoteForm.events({
-    'submit form': function(event){
-      event.preventDefault();
-
-      var noteTitle = event.target.noteTitle.value;
-      var noteContent = event.target.noteContent.value;
-      var file = event.target.noteImage.files[0] || null;
+    'click #note-submit': function(event){
+      var title = $('#note-title').val();
+      var content = $('#note-content').val();
+      var file = $('#note-image')[0].files[0];
 
       var image = file ? Images.insert(file) : null;
-      Meteor.call('insertNote', noteTitle, noteContent, image);
+      Meteor.call('insertNote', title, content, image);
 
-      event.target.noteTitle.value = "";
-      event.target.noteContent.value = "";
+      $('#note-title').val("");
+      $('#note-content').val("");
+      $('#note-image').val("");
     }
-  })
+  });
 }
 
 if (Meteor.isServer) {
