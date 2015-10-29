@@ -5,43 +5,42 @@ Images = new FS.Collection("images", {
 
 if (Meteor.isClient) {
 
+  /**** Notes template ********/
+
   Template.notes.helpers({
     'note': function(){
       return Notes.find({}, {sort: {createdOn: -1}});
     },
-    'gridifyNote': function(note, image){
-        var $note = $("<div>", {class: "grid-item"});
-
-        $note.append($("<h3>", {class: "note-title"}).text(note.title));
-        $note.append($("<p>", {class: "note-content"}).text(note.content));
-
-        if(image){
-          var imageUrl = Images.findOne(image._id).url();
-          $note.append($("<img>", {class: "note-image", src: imageUrl}));
-        }
-
-        $('.grid').prepend($note).masonry('prepended', $note);
+    'noteImage': function(){
+      return Images.findOne(this.imageId._id);
     }
   });
 
   Template.notes.onRendered(function(){
-  });
 
-  Template.dom_note.helpers({
-    'noteImage': function(){
-      return Images.findOne(this.imageId._id);
-    },
-    'size': function(content){
-      if(content.length > 5) return "grid-item--gigante";
+    var triggerPackeryLayout = function(){
+      var $container = $('#notes-container');
+
+      $container.packery({
+        itemSelector: '.item',
+        gutter: 20
+      });
+    };
+
+    this.find('#notes-container')._uihooks = {
+      insertElement: function(node, next){
+        triggerPackeryLayout();
+        $('#notes-container').prepend(node);
+        $('#notes-container').packery('prepended', node);
+      }
     }
   });
 
-  Template.dom_note.onRendered(function(){
-    $('#notes-container').isotope({
-      itemSelector: '.grid-item',
-      gutter: 20
-    });
-  });
+  Template.notes.events({
+    'click .item': function(){
+      console.log(this);
+    }
+  })
 
   Template.addNoteForm.events({
     'click #note-submit': function(event){

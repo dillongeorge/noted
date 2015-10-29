@@ -26,5 +26,5 @@ cfs:gridfs
 twbs:bootstrap
 mrt:jquery-imagesloaded
 robodo:masonrify
-isotope:isotope
 dburles:packery
+useraccounts:bootstrap
