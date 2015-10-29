@@ -23,7 +23,7 @@ if (Meteor.isClient) {
 
       $container.packery({
         itemSelector: '.item',
-        gutter: 20
+        gutter: 15
       });
     };
 
@@ -38,7 +38,14 @@ if (Meteor.isClient) {
 
   Template.notes.events({
     'click .item': function(){
-      console.log(this);
+      $(this).lightbox();
+    },
+    'mouseenter .item': function(){
+      $('#' + this._id).removeClass('hidden');
+      //$(this.find('.note-options')).toggleClass('hidden');
+    },
+    'mouseleave .item': function(){
+      $('#' + this._id).addClass('hidden');
     }
   })
 
