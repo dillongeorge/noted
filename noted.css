@@ -10,14 +10,15 @@
   clear: both;
 }
 
-/* ---- grid-item ---- */
+/* ---- note-item ---- */
 
 .item {
   width:  250px;
   min-height: 200px;
+  position: relative;
   float: left;
   background: rgb(128, 216, 255);
-  padding-left: 2.5%;
+  padding-left: 1%;
   font-size: 1em;
 	-webkit-box-shadow: 3px 4px 6px -1px rgba(0,0,0,0.75);
 	-moz-box-shadow: 3px 4px 6px -1px rgba(0,0,0,0.75);
@@ -28,18 +29,25 @@
 	width: 25%;
 	height: 25%;
 	border-radius: 50%;
-	position: relative;
+	position: absolute;
 	top: 50%;
-	left: 75%;
+	left: 50%;
 	padding-left: 5px
 }
 
-/** Form Style **/
-
-.btn-inline-right{
-	display: inline;
-	float: right;
+.item > .note-options{
+	position: absolute;
+	height: 10%;
+	width: 100%;
+	top: 88%;
 }
+
+.note-option{
+	padding-left: 3%;
+	cursor: pointer;
+}
+
+/** Form Style **/
 
 #note-image{
 	display: none;
