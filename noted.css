@@ -1,6 +1,7 @@
 /* navbar */
 .blue{
 	background-color: #C9EDFF;
+	color: black;
 }
 
 /* ---- note-form ---- */
@@ -28,9 +29,22 @@
 	box-shadow: 3px 4px 4px -1px rgba(0,0,0,0.75);
 }
 
-.note-options{
+.note-options-container{
 	border: none !important;
 	background-color: rgb(128, 216, 255);
+}
+
+.note-options {
+	opacity: 0; 
+	-moz-opacity: 0; 
+	-webkit-opacity: 0; 
+	cursor: pointer;
+}
+
+.note-options:hover {
+	opacity: 1; 
+	-moz-opacity: 1; 
+	-webkit-opacity: 1; 
 }
 
 .note-content {

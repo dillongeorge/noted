@@ -26,3 +26,4 @@ twbs:bootstrap
 mrt:jquery-imagesloaded
 dburles:packery
 ian:accounts-ui-bootstrap-3
+mrt:fancybox

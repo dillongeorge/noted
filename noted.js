@@ -38,16 +38,18 @@ if (Meteor.isClient) {
   });
 
   Template.notes.events({
-    'click .note': function(event){
+    'click .note-content': function(event){
       event.preventDefault();
       $(this).lightbox();
     },
+    'click .note-options': function(){
+      console.log("Icon");
+    },
     'mouseenter .note': function(){
-      $('#' + this._id).removeClass('hidden');
-      //$(this.find('.note-options')).toggleClass('hidden');
+      $('#' + this._id).fadeTo("fast", .75);
     },
     'mouseleave .note': function(){
-      $('#' + this._id).addClass('hidden');
+      $('#' + this._id).fadeTo("fast", 0);
     }
   })
 
