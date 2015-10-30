@@ -1,4 +1,5 @@
 Notes = new Mongo.Collection("notes");
+
 Images = new FS.Collection("images", {
   stores: [new FS.Store.GridFS("images")]
 });
@@ -22,8 +23,8 @@ if (Meteor.isClient) {
       var $container = $('#notes-container');
 
       $container.packery({
-        itemSelector: '.item',
-        gutter: 15
+        itemSelector: '.note',
+        gutter: 10
       });
     };
 
@@ -37,14 +38,15 @@ if (Meteor.isClient) {
   });
 
   Template.notes.events({
-    'click .item': function(){
+    'click .note': function(event){
+      event.preventDefault();
       $(this).lightbox();
     },
-    'mouseenter .item': function(){
+    'mouseenter .note': function(){
       $('#' + this._id).removeClass('hidden');
       //$(this.find('.note-options')).toggleClass('hidden');
     },
-    'mouseleave .item': function(){
+    'mouseleave .note': function(){
       $('#' + this._id).addClass('hidden');
     }
   })
@@ -82,6 +84,7 @@ if (Meteor.isServer) {
         imageId: pid,
         createdOn: new Date()
       });
+      console.log("Made it");
     },
     'fetchImageUrl': function(imageId){
       return {url: Images.findOne(imageId).url()};

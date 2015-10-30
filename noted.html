@@ -9,68 +9,70 @@
 </body>
 
 <template name="notes">
-	<div class="row">
-		<div id="notes-container" class="col-md-10 col-md-offset-1">
-			{{#each note}}
-				<div class="item">
-					<h3>{{title}}</h3>
-					<p>{{content}}</p>
-					{{#if imageId}}
-						{{#with noteImage}}
-							<a><img class="note-image" src="{{this.url}}"></a>
-						{{/with}}
-					{{/if}}
-					<div id="{{_id}}" class="note-options hidden">
-						<span class="glyphicon glyphicon-tint note-option" aria-hidden="true"></span>
-					</div>
-				</div> 
-			{{/each}}
+	<div class="container-fluid">
+		<div class="row">
+			<div id="notes-container" class="col-md-10 col-md-offset-1">
+				{{#each note}}
+					<div class="panel panel-default note">
+						<div class="panel-body note-content">
+							{{#if imageId}}
+								{{#with noteImage}}
+									<a><img class="note-image" src="{{this.url}}"></a>
+								{{/with}}
+							{{/if}}
+							<h3>{{title}}</h3>
+							<p>{{content}}</p>
+						</div>
+						<div class="panel-footer note-options">
+							<span id="{{_id}}" class="glyphicon glyphicon-tint" aria-hidden="true"></span>
+						</div>
+					</div> 
+				{{/each}}
+			</div>
 		</div>
 	</div>
 </template>
 
 <template name="addNoteForm">
- 	<div class="row">
- 		<div class="col-md-4 col-md-offset-4">
-		 	<div class="panel panel-default">
-		 		<div class="panel-heading">
-		 			<input type="text" id="note-title" class="form-control borderless" placeholder="Add Title">
-		 		</div>
-		 		<div class="panel-body">
-		 		<textarea id="note-content" class="form-control borderless" placeholder="Add Content"></textarea>
-		 		</div>
-		 		<div class="panel-footer">
-		 			<label for="note-image">
-		 				<span class="glyphicon glyphicon-picture note-option" aria-hidden="true"></span>
-		 			</label>
-			 		<input type="file" id="note-image"/>
-			 		<span class="glyphicon glyphicon-tint note-option" aria-hidden="true"></span>
-			 		<input type="button" id="note-submit" class="btn btn-default navbar-right" value="Add Note">
-		 		</div>
-		 	</div>
+	<div class="container-fluid">
+	 	<div class="row">
+	 		<div class="col-md-4 col-md-offset-4">
+			 	<div class="panel panel-default">
+			 		<div class="panel-heading">
+			 			<input type="text" id="note-title" class="form-control borderless" placeholder="Add Title">
+			 		</div>
+			 		<div class="panel-body">
+			 		<textarea id="note-content" class="form-control borderless" placeholder="Add Content"></textarea>
+			 		</div>
+			 		<div class="panel-footer plain">
+			 			<label for="note-image">
+			 				<span class="glyphicon glyphicon-picture note-option" aria-hidden="true"></span>
+			 			</label>
+				 		<input type="file" id="note-image"/>
+				 			<span class="glyphicon glyphicon-tint note-option" aria-hidden="true"></span>
+				 		<input type="button" id="note-submit" class="btn btn-default navbar-right" value="Add Note">
+			 		</div>
+			 	</div>
+			 </div>
 		 </div>
-	 </div>
+	</div>
 </template>
 
 <template name="navbar">
-	<nav class="navbar navbar-default">
-	  <div class="container-fluid">
-	    <!-- Brand and toggle get grouped for better mobile display -->
+	<div class="navbar navbar-default blue" role="navigation">
 	    <div class="navbar-header">
-	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-	        <span class="sr-only">Toggle navigation</span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	      </button>
-	      <a class="navbar-brand" href="#">Noted</a>
+	        <a class="navbar-brand">Noted</a>
+	        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+	            <span class="sr-only">Toggle navigation</span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	        </button>
 	    </div>
-
-	    <div class="collapse navbar-collapse">
-	      <ul class="nav navbar-nav navbar-right">
-	        {{> atNavButton}}
-	      </ul>
-	    </div><!-- /.navbar-collapse -->
-	  </div><!-- /.container-fluid -->
-	</nav>
+	    <div class="navbar-collapse collapse">
+	        <ul class="nav navbar-nav navbar-right">
+	            {{> loginButtons}}
+	        </ul>
+	    </div>
+	</div>
 </template>
