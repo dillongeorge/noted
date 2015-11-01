@@ -26,7 +26,10 @@
 						<div class="panel-footer note-options-container">
 							<span id="{{_id}}" class="glyphicon glyphicon-tint note-options" aria-hidden="true"></span>
 						</div>
-					</div> 
+					</div>
+					{{#unless imageId}} 
+						{{rendered}}
+					{{/unless}}
 				{{/each}}
 			</div>
 		</div>
@@ -49,7 +52,8 @@
 			 				<span class="glyphicon glyphicon-picture note-option" aria-hidden="true"></span>
 			 			</label>
 				 		<input type="file" id="note-image"/>
-				 			<span class="glyphicon glyphicon-tint note-option" aria-hidden="true"></span>
+
+				 		<span id="color-tint" class="glyphicon glyphicon-tint note-option" aria-hidden="true"></span>
 				 		<input type="button" id="note-submit" class="btn btn-default navbar-right" value="Add Note">
 			 		</div>
 			 	</div>
@@ -59,7 +63,7 @@
 </template>
 
 <template name="navbar">
-	<div class="navbar navbar-default blue" role="navigation">
+	<div class="navbar navbar-inverse" role="navigation">
 	    <div class="navbar-header">
 	        <a class="navbar-brand">Noted</a>
 	        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
