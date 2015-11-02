@@ -1,8 +1,8 @@
 /* ---- note-form ---- */
 
 .plain{
-	border-top: none !important;;
-	background: none !important;;
+	border-top: none !important;
+	background: none !important;
 }
 
 .note-option{
@@ -10,6 +10,15 @@
 	background: none;
 	padding-left: 5%;
 	cursor: pointer;
+}
+
+#preview-image{
+	width: 100%;
+	max-height: 800px;
+}
+
+.minimal-btn{
+	border: none;
 }
 
 
@@ -23,41 +32,55 @@
 	box-shadow: 3px 4px 4px -1px rgba(0,0,0,0.75);
 }
 
-.note-options-container{
-	border: none !important;
-	background-color: rgb(128, 216, 255);
+/* Colors taken from Google Keep color options for notes */
+.RED{ background-color: rgb(255, 138, 128); }
+.ORANGE{ background-color: rgb(255, 209, 128); }
+.YELLOW{ background-color: rgb(255, 255, 141); }
+.GRAY{ background-color: rgb(207, 216, 220); }
+.BLUE{ background-color: rgb(128, 216, 255); }
+.TEAL{ background-color: rgb(167, 255, 235); }
+.GREEN{ background-color: rgb(204, 255, 144); }
+
+.delete-note{
+	position: absolute !important;
+	right: 5px;
+	top: 5px;
+	opacity: 0;
 }
 
-.note-options {
-	opacity: 0; 
-	-moz-opacity: 0; 
-	-webkit-opacity: 0; 
+.delete-note:hover{
+	opacity: 1 !important;
 	cursor: pointer;
 }
 
-.note-options:hover {
-	opacity: 1 !important; 
-	-moz-opacity: 1 !important;
-	-webkit-opacity: 1 !important;
-}
+.small{ }
+.medium{ min-height: 200px; width: 250px; }
+.large{ }
+.massive{ }
 
 .note-content {
 	border: none !important;
-	background-color: rgb(128, 216, 255);
-	min-height: 200px;
-	width:  250px;
+	background: none !important;
 	display: block;
 	word-wrap: break-word;
 	overflow: hidden;
+	padding: 5%;
+}
+
+.note-content > .text-container{
+	height: 40%;
+	width: 100%;
+}
+.note-content > .image-container{
+	background: none;
+	text-align: center;
+	height: 60%;
+	width: 100%;
 }
 
 .note-image{
-	width: 25%;
-	height: 25%;
-	border-radius: 50%;
-	top: 50%;
-	left: 50%;
-	padding-left: 5px
+	max-height: 100%;
+	max-width: 100%;
 }
 
 /** Form Style **/
@@ -78,15 +101,58 @@
 }
 
 /* ---- update-form ---- */
+
 .update-form-container{
 	height: 100%;
 	width: 100%;
 }
 
-.update-note-title, .update-note-submit{
-
-}
-
 .update-note-content{
  	height: 80% !important;
+}
+
+#update-note-button{
+	background: none;
+	position: absolute;
+	right: 10px;
+	bottom: 5px;
+}
+
+#update-note-button:hover{
+	background: rgba(0,0,0,.1);
+}
+
+.form-button-container{
+	padding-right: 5px;
+}
+
+.image-container{
+	height: 100%;
+	width: 70%;
+	overflow: hidden;
+	display: inline-block;
+	float: left;
+	text-align: center;
+	font-size: 4em;
+	color: #161615;
+	background: rgba(0,0,0,.75);
+}
+
+.content-container{
+	height: 100%;
+	width: 30%;
+	display: inline-block;
+	float: right;
+}
+
+.vertical-align-helper{
+	display: inline-block;
+	vertical-align: middle;
+	height: 100%;
+}
+
+.update-image{
+	max-height: 100%;
+	max-width: 100%;
+	vertical-align: middle;
 }

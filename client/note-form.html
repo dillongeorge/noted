@@ -1,0 +1,33 @@
+<template name="addNoteForm">
+	<div class="container-fluid">
+	 	<div class="row">
+	 		<div class="col-md-4 col-md-offset-4">
+			 	<div id="note-form" class="panel panel-default">
+			 		<div>
+			 			<span>
+			 				<img id="preview-image" class="img-responsive">
+			 			</span>
+			 		</div>
+			 		<div class="panel-heading plain">
+			 			<input type="text" id="note-title" class="form-control borderless" placeholder="Add Title">
+			 		</div>
+			 		<div class="panel-body">
+				 		<textarea id="note-body" class="form-control borderless" placeholder="Add Content"></textarea>
+			 		</div>
+			 		<div class="panel-footer plain">
+			 			<label for="note-image">
+			 				<span class="glyphicon glyphicon-picture note-option" aria-hidden="true"></span>
+			 			</label>
+				 		<input type="file" id="note-image"/>
+				 		<div class="navbar-right form-button-container">
+				 			<span>
+						 		<input type="button" id="note-clear" class="btn btn-default minimal-btn" value="Clear">
+						 		<input type="button" id="note-submit" class="btn btn-default minimal-btn" value="Done">
+						 	</span>
+					 	</div>
+			 		</div>
+			 	</div>
+			 </div>
+		 </div>
+	</div>
+</template>
