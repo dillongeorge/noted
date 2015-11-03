@@ -1,3 +1,9 @@
+*{
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+
 /* ---- note-form ---- */
 
 .plain{
@@ -26,10 +32,13 @@
 
 .note {
 	border: none !important;
-	margin-bottom: 0 !important;
 	-webkit-box-shadow: 3px 4px 4px -1px rgba(0,0,0,0.75);
 	-moz-box-shadow: 3px 4px 4px -1px rgba(0,0,0,0.75);
 	box-shadow: 3px 4px 4px -1px rgba(0,0,0,0.75);
+	width: 18%;
+	min-width: 250px;
+	max-width: 350px;
+	min-height: 250px;
 }
 
 /* Colors taken from Google Keep color options for notes */
@@ -53,24 +62,27 @@
 	cursor: pointer;
 }
 
-.small{ }
-.medium{ min-height: 200px; width: 250px; }
-.large{ }
-.massive{ }
+.small{ font-size: 4em ;}
+.medium{ font-size: 2em;}
+.large{ font-size: 1em ;}
 
 .note-content {
 	border: none !important;
 	background: none !important;
 	display: block;
-	word-wrap: break-word;
-	overflow: hidden;
 	padding: 5%;
+	height: 100%;
+	width: 100%;
 }
 
 .note-content > .text-container{
 	height: 40%;
 	width: 100%;
+	word-wrap: break-word;
+	text-overflow: ellipsis;
 }
+.note-content > .text-container > p {font-family: 'Poiret One';}
+
 .note-content > .image-container{
 	background: none;
 	text-align: center;
@@ -79,8 +91,8 @@
 }
 
 .note-image{
-	max-height: 100%;
-	max-width: 100%;
+	max-height: 50%;
+	max-width: 50%;
 }
 
 /** Form Style **/
@@ -144,6 +156,9 @@
 	display: inline-block;
 	float: right;
 }
+
+.content-container > textarea { font-family: 'Poiret One'; color: black; }
+.content-container > input[type=text] { font-weight: bold; }
 
 .vertical-align-helper{
 	display: inline-block;

@@ -15,6 +15,7 @@ Template.notes.helpers({
     return Images.findOne(this.imageId._id);
   },
   'rendered': function(){
+    console.log("notes");
     $('#notes-container').packery();
   }
 });
