@@ -1,10 +1,19 @@
 <head>
   <title>Noted</title>
-  <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
 	{{> navbar}}
-	{{> addNoteForm}}
-	{{> notes}}
+	{{#if currentUser}}
+		{{> addNoteForm}}
+	{{else}}
+		<div class="col-md-8 col-md-offset-2">
+			<div class="jumbotron text-center">
+				<h1>Welcome to Noted</h1>
+				<p>If you haven't already, create an account and easily start creating notes today!</p>
+			</div>
+		</div>
+	{{/if}}
+	{{> notes }}
 </body>

@@ -14,7 +14,14 @@ Template.addNoteForm.events({
     if(!title && !content && !file)
       return;
 
-    var image = file ? Images.insert(file) : null;
+    var image = null;
+    
+    if(file){
+      file = new FS.File(file);
+      file.owner = Meteor.userId();
+      image = Images.insert(file);
+    }
+
     Meteor.call('insertNote', title, content, image);
 
     clearFields();

@@ -1,0 +1,57 @@
+/* Container Styling for Fancybox components */
+
+.update-form-container{
+	height: 100%;
+	width: 100%;
+}
+
+#update-note-content{
+ 	height: 80% !important;
+ 	font-family: 'Comfortaa';
+ 	font-size: 1.2em; 
+ 	color: black; 
+}
+
+.form-button-container{ padding-right: 5px; }
+
+.image-container{
+	height: 100%;
+	width: 70%;
+	overflow: hidden;
+	display: inline-block;
+	float: left;
+	text-align: center;
+	font-size: 4em;
+	color: #161615;
+	background: rgba(0,0,0,.75);
+}
+
+.content-container{
+	height: 100%;
+	width: 30%;
+	display: inline-block;
+	float: right;
+}
+
+/* Various component styling */
+.content-container > input[type=text] { font-weight: bold; font-size: 1.5em; color: black; }
+#update-note-button:hover{ background: rgba(0,0,0,.1); }
+
+#update-note-button{
+	background: none;
+	position: absolute;
+	right: 10px;
+	bottom: 5px;
+}
+
+.vertical-align-helper{
+	display: inline-block;
+	vertical-align: middle;
+	height: 100%;
+}
+
+.update-image{
+	max-height: 100%;
+	max-width: 100%;
+	vertical-align: middle;
+}

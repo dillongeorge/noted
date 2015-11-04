@@ -1,0 +1,9 @@
+*{
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.plain{
+	border-top: none !important;
+	background: none !important;
+}

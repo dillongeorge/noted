@@ -1,0 +1,29 @@
+.note-options{
+	border: none !important;
+	background: none;
+	padding-left: 5%;
+	cursor: pointer;
+	opacity: 0.75;
+}
+
+.note-options:hover{ opacity: 1; }
+
+#preview-image{
+	width: 100%;
+	max-height: 800px;
+}
+
+.minimal-btn{ border: none; }
+
+#note-image{ display: none; }
+
+/*http://stackoverflow.com/questions/12200544/override-twitter-bootstrap-textbox-glow-and-shadows */
+.borderless{
+	background: none;
+	outline: none;
+	resize: none;
+	border: none !important;
+	-webkit-box-shadow: none !important;
+	-moz-box-shadow: none !important;
+	box-shadow: none !important;
+}

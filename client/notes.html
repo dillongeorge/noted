@@ -3,24 +3,22 @@
 		<div class="row">
 			<div id="notes-container" class="col-md-10 col-md-offset-1">
 				{{#each note}}
-						<div class="note {{color}}">
-							<span id="{{_id}}" class="glyphicon glyphicon-remove delete-note" aria-hidden="true"></span>
-							<div class="note-content medium">
-								<div class="text-container">
-									<h3><strong>{{title}}</strong></h3>
-									<p>{{content}}</p>
-								</div>
-								<div class="image-container">
-									{{#if imageId}}
-										{{#with noteImage}}
-											<img class="img-responsive img-circle note-image" src="{{this.url}}">
-										{{/with}}
-									{{/if}}
-								</div>
+					<div class="note {{#if image}} {{sizeMeUpNote}}-note {{/if}} {{color}}">
+						<span id="{{_id}}" class="glyphicon glyphicon-remove delete-note" aria-hidden="true"></span>
+						<div class="note-content {{sizeMeUpText}}">
+							<div class="image-container">
+								{{#if image}}
+									{{#with noteImage}}
+										<img class="img-responsive img-circle note-image" src="{{this.url}}">
+									{{/with}}
+								{{/if}}
+							</div>
+							<div class="text-container">
+								<h3><strong>{{title}}</strong></h3>
+								<p>{{content}}</p>
 							</div>
 						</div>
-
-					<!-- Need to packery on updated notes -->
+					</div>
 					{{rendered}}
 				{{/each}}
 			</div>

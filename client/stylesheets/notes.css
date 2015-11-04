@@ -1,0 +1,73 @@
+.note {
+	border: none !important;
+	-webkit-box-shadow: 3px 4px 4px -1px rgba(0,0,0,0.75);
+	-moz-box-shadow: 3px 4px 4px -1px rgba(0,0,0,0.75);
+	box-shadow: 3px 4px 4px -1px rgba(0,0,0,0.75);
+	width: 18%;
+	min-width: 250px;
+	max-width: 350px;
+	min-height: 150px;
+	max-height: 800px;
+}
+
+.note-content {
+	border: none !important;
+	background: none !important;
+	display: block;
+	padding: 5%;
+	height: 100%;
+	width: 100%;
+}
+
+.note-content > .text-container{
+	height: 50%;
+	width: 100%;
+	word-wrap: break-word;
+	overflow: hidden;
+}
+.note-content > .text-container > p { font-family: 'Comfortaa'; }
+
+.note-content > .image-container{
+	background: none;
+	width: 100%;
+	height: 50%;
+	max-height: 200px;
+}
+
+/* Note component styling */
+.note-image{
+	max-height: 75%;
+	max-width: 75%;
+	float: right;
+}
+
+.delete-note{
+	position: absolute !important;
+	right: 5px;
+	top: 5px;
+	opacity: 0;
+}
+
+.delete-note:hover{
+	opacity: 1 !important;
+	cursor: pointer;
+}
+
+
+/* Colors taken from Google Keep color options for notes */
+.RED{ background-color: rgb(255, 138, 128); }
+.ORANGE{ background-color: rgb(255, 209, 128); }
+.YELLOW{ background-color: rgb(255, 255, 141); }
+.GRAY{ background-color: rgb(207, 216, 220); }
+.BLUE{ background-color: rgb(128, 216, 255); }
+.TEAL{ background-color: rgb(167, 255, 235); }
+.GREEN{ background-color: rgb(204, 255, 144); }
+
+/* Note height and font styling options */
+.small-note { height: 350px; }
+.medium-note { height: 500px; }
+.large-note { height: 800px; }
+
+.small{ font-size: 3em; }
+.medium{ font-size: 2em; }
+.large{ font-size: 1.5em; }

@@ -1,31 +1,54 @@
-var triggerPackeryLayout = function(){
-  var $container = $('#notes-container');
-
-  $container.packery({
-    itemSelector: '.note',
-    gutter: 20
-  });
-};
+Meteor.subscribe("notes");
+Meteor.subscribe("images");
 
 Template.notes.helpers({
   'note': function(){
     return Notes.find({}, {sort: {createdOn: -1}});
   },
   'noteImage': function(){
-    return Images.findOne(this.imageId._id);
+    return Images.findOne(this.image._id);
   },
   'rendered': function(){
-    console.log("notes");
-    $('#notes-container').packery();
+    var $container = $('#notes-container');
+
+    $container.imagesLoaded(function(){
+      $('#notes-container').packery();
+    });
+  },
+  'sizeMeUpNote': function(){
+    if(this.image){
+      var content = this.content
+      if(content.length <= 40) return "small";
+      else if(content.length <= 140) return "medium"
+      else return "large";
+    }
+  },
+  'sizeMeUpText':function(){
+    if(this.image) return "large";
+
+    var content = this.content;
+    if(content.length <= 40) return "small";
+    //twitter lol
+    else if(content.length <= 140) return "medium"
+    else return "large";
   }
+});
+
+Template.notes.onCreated(function(){
+  setTimeout(500, $('#notes-container').packery());
 });
 
 Template.notes.onRendered(function(){
   this.find('#notes-container')._uihooks = {
     insertElement: function(node, next){
-      triggerPackeryLayout();
-      $('#notes-container').prepend(node);
-      $('#notes-container').packery('prepended', node);
+      var $container = $('#notes-container');
+
+      $container.imagesLoaded(function(){
+        triggerPackeryLayout();
+        $container.prepend(node);
+        $container.packery('prepended', node);
+      });
+
     },
     removeElement: function(node, next){
       node.remove();
@@ -37,8 +60,36 @@ Template.notes.onRendered(function(){
 Template.notes.events({
   'click .note-content': function(event){
     event.preventDefault();
+    createFancyBox(this);
+  },
+  'click .delete-note': function(){
+    Meteor.call("removeNote", this._id);
+  },
+  'mouseenter .note': function(){
+    $('#' + this._id).fadeTo("fast", .75);
+  },
+  'mouseleave .note': function(){
+    $('#' + this._id).fadeTo("fast", 0);
+  }
+});
 
-    var note = this;
+/* Used to trigger packery layout in uihooks */
+var triggerPackeryLayout = function(){
+  var $container = $('#notes-container');
+
+  $container.packery({
+    itemSelector: '.note',
+    percentPosition: true,
+    gutter: 20
+  });
+};
+
+/* Dynamically build HTML for lightbox popup when user edits 
+  existing note */
+var createFancyBox = function(note){
+
+    if(!note) 
+      throw new Meteor.Error("Null Note!");;
 
     /** Prettybox container **/
     var container = $('<div>').addClass("update-form-container");
@@ -50,8 +101,8 @@ Template.notes.events({
       var span = $('<span>')
         .addClass("vertical-align-helper");
 
-    if(note.imageId){
-      var imageUrl = note.imageId.url();
+    if(note.image){
+      var imageUrl = note.image.url();
 
       var image = $('<img>')
         .addClass('update-image')
@@ -78,7 +129,6 @@ Template.notes.events({
     var content = $('<textarea id="update-note-content" placeholder="Note">')
       .addClass("form-control")
       .addClass("borderless")
-      .addClass("update-note-content")
       .val(note.content);
 
     var updateNoteSubmit = function(){
@@ -128,14 +178,4 @@ Template.notes.events({
          $(".fancybox-inner").addClass(note.color);
         }
     });
-  },
-  'click .delete-note': function(){
-    Meteor.call("removeNote", this._id);
-  },
-  'mouseenter .note': function(){
-    $('#' + this._id).fadeTo("fast", .75);
-  },
-  'mouseleave .note': function(){
-    $('#' + this._id).fadeTo("fast", 0);
-  }
-});
+}
