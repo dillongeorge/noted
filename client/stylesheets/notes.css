@@ -1,13 +1,13 @@
 .note {
 	border: none !important;
-	-webkit-box-shadow: 3px 4px 4px -1px rgba(0,0,0,0.75);
-	-moz-box-shadow: 3px 4px 4px -1px rgba(0,0,0,0.75);
-	box-shadow: 3px 4px 4px -1px rgba(0,0,0,0.75);
 	width: 18%;
 	min-width: 250px;
 	max-width: 350px;
 	min-height: 150px;
 	max-height: 800px;
+	-webkit-box-shadow: 3px 4px 4px -1px rgba(0,0,0,0.75);
+	-moz-box-shadow: 3px 4px 4px -1px rgba(0,0,0,0.75);
+	box-shadow: 3px 4px 4px -1px rgba(0,0,0,0.75);
 }
 
 .note-content {
@@ -25,13 +25,13 @@
 	word-wrap: break-word;
 	overflow: hidden;
 }
-.note-content > .text-container > p { font-family: 'Comfortaa'; }
+.note-content > .text-container > p { font-family: 'Roboto Slab'; }
 
 .note-content > .image-container{
 	background: none;
 	width: 100%;
 	height: 50%;
-	max-height: 200px;
+	max-height: 150px;
 }
 
 /* Note component styling */
@@ -64,10 +64,10 @@
 .GREEN{ background-color: rgb(204, 255, 144); }
 
 /* Note height and font styling options */
-.small-note { height: 350px; }
+.small-note { height: 300px; }
 .medium-note { height: 500px; }
 .large-note { height: 800px; }
 
-.small{ font-size: 3em; }
+.large{ font-size: 3em; }
 .medium{ font-size: 2em; }
-.large{ font-size: 1.5em; }
+.small{ font-size: 1.5em; }

@@ -3,9 +3,9 @@
 		<div class="row">
 			<div id="notes-container" class="col-md-10 col-md-offset-1">
 				{{#each note}}
-					<div class="note {{#if image}} {{sizeMeUpNote}}-note {{/if}} {{color}}">
+					<div class="note {{#if image}} {{sizeNote}}-note {{/if}} {{color}}">
 						<span id="{{_id}}" class="glyphicon glyphicon-remove delete-note" aria-hidden="true"></span>
-						<div class="note-content {{sizeMeUpText}}">
+						<div class="note-content {{sizeText}}">
 							<div class="image-container">
 								{{#if image}}
 									{{#with noteImage}}
@@ -19,7 +19,7 @@
 							</div>
 						</div>
 					</div>
-					{{rendered}}
+					{{packery}}
 				{{/each}}
 			</div>
 		</div>

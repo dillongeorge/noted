@@ -7,7 +7,7 @@
 
 #update-note-content{
  	height: 80% !important;
- 	font-family: 'Comfortaa';
+ 	font-family: 'Roboto Slab';
  	font-size: 1.2em; 
  	color: black; 
 }
@@ -34,7 +34,7 @@
 }
 
 /* Various component styling */
-.content-container > input[type=text] { font-weight: bold; font-size: 1.5em; color: black; }
+.content-container > input[type=text] { font-weight: bold; font-size: 1.2em; color: black; }
 #update-note-button:hover{ background: rgba(0,0,0,.1); }
 
 #update-note-button{

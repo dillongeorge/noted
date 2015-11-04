@@ -8,29 +8,27 @@ Template.notes.helpers({
   'noteImage': function(){
     return Images.findOne(this.image._id);
   },
-  'rendered': function(){
+  'packery': function(){
     var $container = $('#notes-container');
 
     $container.imagesLoaded(function(){
       $('#notes-container').packery();
     });
   },
-  'sizeMeUpNote': function(){
-    if(this.image){
+  'sizeNote': function(){
       var content = this.content
-      if(content.length <= 40) return "small";
+      if(content.length <= 40 || 
+        (!this.title && !this.content)) return "small";
       else if(content.length <= 140) return "medium"
       else return "large";
-    }
   },
-  'sizeMeUpText':function(){
-    if(this.image) return "large";
+  'sizeText':function(){
+    if(this.image) return "small";
 
     var content = this.content;
-    if(content.length <= 40) return "small";
-    //twitter lol
+    if(content.length <= 40) return "large";
     else if(content.length <= 140) return "medium"
-    else return "large";
+    else return "small";
   }
 });
 
@@ -122,13 +120,13 @@ var createFancyBox = function(note){
 
     var title = $('<input id="update-note-title" type="text" placeholder="Title">')
       .addClass("form-control")
-      .addClass("borderless")
+      .addClass("minimal")
       .addClass("update-note-title")
       .val(note.title);
 
     var content = $('<textarea id="update-note-content" placeholder="Note">')
       .addClass("form-control")
-      .addClass("borderless")
+      .addClass("minimal")
       .val(note.content);
 
     var updateNoteSubmit = function(){
