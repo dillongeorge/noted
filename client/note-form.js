@@ -8,9 +8,9 @@ var clearFields = function(){
 
 Template.addNoteForm.events({
   'click #note-submit': function(event){
-    var title = $('#note-title').val();
-    var content = $('#note-body').val();
-    var file = $('#note-image')[0].files[0];
+    var title = $("#note-title").val();
+    var content = $("#note-body").val();
+    var file = $("#note-image")[0].files[0];
 
     if(!title && !content && !file)
       return;

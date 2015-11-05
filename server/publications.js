@@ -1,4 +1,4 @@
-Meteor.publish("notes", function(){
+Meteor.publish("notes", function(userId){
   return Notes.find({createdBy: this.userId});
 });
 
