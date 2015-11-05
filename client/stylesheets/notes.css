@@ -1,6 +1,6 @@
 .note {
 	border: none !important;
-	width: 18.5%;
+	width: 18%;
 	min-width: 250px;
 	max-width: 350px;
 	min-height: 150px;
@@ -9,9 +9,11 @@
 	-moz-box-shadow: 3px 4px 4px -1px rgba(0,0,0,0.75);
 	box-shadow: 3px 4px 4px -1px rgba(0,0,0,0.75);
 }
-@media screen and (max-width: 480px){
+
+@media screen and (max-width: 520px){
 	.note{
 		width: 100% !important;
+		max-width: 100% !important;
 	}
 }
 
