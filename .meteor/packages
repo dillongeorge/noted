@@ -16,12 +16,12 @@ standard-minifiers      # JS/CSS minifiers run for production mode
 es5-shim                # ECMAScript 5 compatibility for older browsers.
 ecmascript              # Enable ECMAScript2015+ syntax in app code
 
-accounts-password
 cfs:standard-packages
 cfs:ejson-file
 cfs:gridfs
-twbs:bootstrap
 mrt:jquery-imagesloaded
 dburles:packery
-ian:accounts-ui-bootstrap-3
 mrt:fancybox
+ian:accounts-ui-bootstrap-3
+accounts-password
+twbs:bootstrap

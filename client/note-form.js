@@ -1,8 +1,9 @@
 var clearFields = function(){
-  $('#note-title').val("");
-  $('#note-body').val("");
-  $('#note-image').val("");
-  $('#preview-image').removeAttr('src');
+  $("#note-title").val("");
+  $("#note-body").val("");
+  $("#note-image").val("");
+  $("#preview-image").removeAttr("src");
+  $("#preview-image-container").addClass("hidden");
 };
 
 Template.addNoteForm.events({
@@ -22,7 +23,7 @@ Template.addNoteForm.events({
       image = Images.insert(file);
     }
 
-    Meteor.call('insertNote', title, content, image);
+    Meteor.call("insertNote", title, content, image);
 
     clearFields();
   },
@@ -30,11 +31,14 @@ Template.addNoteForm.events({
     clearFields();
   },
   'change #note-image': function(){
-    var file = $('#note-image')[0].files[0];
-    var fReader = new FileReader();
-    fReader.onload = function(event){
-      $('#preview-image').attr('src', event.target.result);
-    };
-    fReader.readAsDataURL(file);
+    var file = $("#note-image")[0].files[0];
+    $("#preview-image-container").removeClass("hidden");
+    if(file){
+      var fReader = new FileReader();
+      fReader.onload = function(event){
+        $("#preview-image").attr("src", event.target.result);
+      };
+      fReader.readAsDataURL(file);
+    }
   }
 });

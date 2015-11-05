@@ -1,3 +1,7 @@
+.panel-max{
+	max-width: 800px;
+}
+
 .note-options{
 	border: none !important;
 	background: none;

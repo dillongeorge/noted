@@ -9,7 +9,7 @@ Template.notes.helpers({
     return Images.findOne(this.image._id);
   },
   'packery': function(){
-    var $container = $('#notes-container');
+    var $container = $("#notes-container");
 
     $container.imagesLoaded(function(){
       $('#notes-container').packery();
@@ -19,7 +19,7 @@ Template.notes.helpers({
       var content = this.content
       if(content.length <= 40 || 
         (!this.title && !this.content)) return "small";
-      else if(content.length <= 140) return "medium"
+      else if(content.length <= 140) return "medium";
       else return "large";
   },
   'sizeText':function(){
@@ -32,25 +32,21 @@ Template.notes.helpers({
   }
 });
 
-Template.notes.onCreated(function(){
-  setTimeout(500, $('#notes-container').packery());
-});
-
 Template.notes.onRendered(function(){
-  this.find('#notes-container')._uihooks = {
+  this.find("#notes-container")._uihooks = {
     insertElement: function(node, next){
-      var $container = $('#notes-container');
+      var $container = $("#notes-container");
 
       $container.imagesLoaded(function(){
         triggerPackeryLayout();
         $container.prepend(node);
-        $container.packery('prepended', node);
+        $container.packery("prepended", node);
       });
 
     },
     removeElement: function(node, next){
       node.remove();
-      $('#notes-container').packery();
+      $("#notes-container").packery();
     }
   };
 });
@@ -64,16 +60,16 @@ Template.notes.events({
     Meteor.call("removeNote", this._id);
   },
   'mouseenter .note': function(){
-    $('#' + this._id).fadeTo("fast", .75);
+    $("#" + this._id).fadeTo("fast", .75);
   },
   'mouseleave .note': function(){
-    $('#' + this._id).fadeTo("fast", 0);
+    $("#" + this._id).fadeTo("fast", 0);
   }
 });
 
 /* Used to trigger packery layout in uihooks */
 var triggerPackeryLayout = function(){
-  var $container = $('#notes-container');
+  var $container = $("#notes-container");
 
   $container.packery({
     itemSelector: '.note',
@@ -90,21 +86,21 @@ var createFancyBox = function(note){
       throw new Meteor.Error("Null Note!");;
 
     /** Prettybox container **/
-    var container = $('<div>').addClass("update-form-container");
+    var container = $("<div>").addClass("update-form-container");
 
     /** Image container Code **/
-      var imageContainer = $('<div>')
-        .addClass('image-container');
+      var imageContainer = $("<div>")
+        .addClass("image-container");
 
-      var span = $('<span>')
+      var span = $("<span>")
         .addClass("vertical-align-helper");
 
     if(note.image){
       var imageUrl = note.image.url();
 
-      var image = $('<img>')
-        .addClass('update-image')
-        .attr('src', imageUrl);
+      var image = $("<img>")
+        .addClass("update-image")
+        .attr("src", imageUrl);
 
       imageContainer.append(span).append(image);
     }else{
@@ -115,16 +111,16 @@ var createFancyBox = function(note){
 
     /** Content Container Code **/
 
-    var contentContainer = $('<div>')
+    var contentContainer = $("<div>")
       .addClass("content-container");
 
-    var title = $('<input id="update-note-title" type="text" placeholder="Title">')
+    var title = $("<input id='update-note-title' type='text' placeholder='Title'>")
       .addClass("form-control")
       .addClass("minimal")
       .addClass("update-note-title")
       .val(note.title);
 
-    var content = $('<textarea id="update-note-content" placeholder="Note">')
+    var content = $("<textarea id='update-note-content' placeholder='Note'>")
       .addClass("form-control")
       .addClass("minimal")
       .val(note.content);
@@ -133,19 +129,19 @@ var createFancyBox = function(note){
       Meteor.call(
           "updateNote",
           note._id,
-          $('#update-note-title').val(),
-          $('#update-note-content').val(),
+          $("#update-note-title").val(),
+          $("#update-note-content").val(),
         );
         $.fancybox.close();
     };
 
-    var submitButton = $('<input type="button" id="update-note-button" value="Done">')
-    .addClass('btn')
-    .addClass('btn-default')
-    .addClass('minimal-btn')
+    var submitButton = $("<input type='button' id='update-note-button' value='Done'>")
+    .addClass("btn")
+    .addClass("btn-default")
+    .addClass("minimal-btn")
     .click(updateNoteSubmit);
 
-    var submitContainer = $('<div>')
+    var submitContainer = $("<div>")
       .addClass("update-note-options-container")
       .append(submitButton);
 

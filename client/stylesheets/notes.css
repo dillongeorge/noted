@@ -1,6 +1,6 @@
 .note {
 	border: none !important;
-	width: 18%;
+	width: 18.5%;
 	min-width: 250px;
 	max-width: 350px;
 	min-height: 150px;
@@ -8,6 +8,18 @@
 	-webkit-box-shadow: 3px 4px 4px -1px rgba(0,0,0,0.75);
 	-moz-box-shadow: 3px 4px 4px -1px rgba(0,0,0,0.75);
 	box-shadow: 3px 4px 4px -1px rgba(0,0,0,0.75);
+}
+@media screen and (max-width: 480px){
+	.note{
+		width: 100% !important;
+	}
+}
+
+.note:hover {
+	cursor: default;
+	-webkit-box-shadow: 3px 4px 4px 1px rgba(0,0,0,0.75);
+	-moz-box-shadow: 3px 4px 4px 1px rgba(0,0,0,0.75);
+	box-shadow: 3px 4px 4px 1px rgba(0,0,0,0.75);
 }
 
 .note-content {
@@ -36,15 +48,17 @@
 
 /* Note component styling */
 .note-image{
-	max-height: 75%;
-	max-width: 75%;
-	float: right;
+	height: 100%;
+	width: 98%;
+	max-height: 100%;
+	max-width: 100%;
+	margin: 0 auto;
 }
 
 .delete-note{
 	position: absolute !important;
-	right: 5px;
-	top: 5px;
+	right: 3px;
+	top: 3px;
 	opacity: 0;
 }
 
